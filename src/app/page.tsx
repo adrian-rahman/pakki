@@ -22,10 +22,17 @@ import {
   agenda,
   announcements,
   contact,
-  legal,
+  emblemMeaning,
+  leadership,
+  membershipFees,
+  membershipRequirements,
   membershipSteps,
+  membershipTypes,
   news,
+  objectives,
+  organization,
   regulations,
+  values,
 } from "@/content/site";
 
 const toneClass = {
@@ -41,8 +48,8 @@ const waLink = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
 const quickLinks = [
   {
     icon: UserCheck,
-    title: "Registrasi KTA",
-    body: "Pendaftaran baru atau perpanjangan kartu tanda anggota resmi PAKKI.",
+    title: "Registrasi Anggota",
+    body: "Pendaftaran anggota baru serta penerbitan Nomor dan Kartu Anggota PAKKI.",
     cta: "Alur daftar",
     href: "#keanggotaan",
   },
@@ -67,12 +74,6 @@ const quickLinks = [
     cta: "Hubungi kami",
     href: "#kontak",
   },
-];
-
-const pillars = [
-  ["Standardisasi Mutu", "Menjaga kompetensi dan integritas etik praktisi K3 di seluruh sektor usaha."],
-  ["Advokasi Kebijakan", "Memberikan masukan teknis ilmiah kepada pemerintah dan asosiasi industri."],
-  ["Pengembangan SKP (P2KB)", "Pembinaan keprofesian berkelanjutan yang terakreditasi dan terukur."],
 ];
 
 function SectionHeading({
@@ -431,61 +432,89 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 8. PROFIL */}
+        {/* 8. PROFIL (sumber: AD/ART Munas II 2022) */}
         <section id="profil" className="border-b border-slate-200 bg-slate-50 py-12 md:py-16">
           <div className="mx-auto grid max-w-7xl items-start gap-8 px-4 md:px-8 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-7">
-              <SectionHeading eyebrow="Identitas & Legalitas" title="Tentang Perhimpunan Ahli Kesehatan Kerja Indonesia" />
+              <SectionHeading eyebrow="Identitas Organisasi" title="Tentang Perhimpunan Ahli Kesehatan Kerja Indonesia" />
               <div className="-mt-4 space-y-4 text-base leading-relaxed text-slate-700">
                 <p>
-                  <strong className="text-slate-900">PAKKI</strong> adalah organisasi profesi yang berfokus pada
-                  rumpun keahlian kesehatan kerja, higiene industri, ergonomi, dan keselamatan tenaga kerja.
-                  PAKKI berkedudukan di tingkat Dewan Pengurus Pusat (DPP) serta menaungi perwakilan cabang di
-                  berbagai provinsi.
+                  <strong className="text-slate-900">Perhimpunan Ahli Kesehatan Kerja Indonesia (PAKKI)</strong>{" "}
+                  adalah organisasi profesi kesehatan kerja yang menjadi wadah berhimpunnya ahli kesehatan kerja
+                  secara nasional dan berperan mendorong perkembangan kesehatan kerja di Indonesia. PAKKI didirikan
+                  pada tanggal {organization.founded}, berasaskan Pancasila dan Undang-Undang Dasar 1945.
                 </p>
                 <p>
-                  Anggota PAKKI memastikan standar kesehatan kerja ditegakkan di lingkungan operasional — dari
-                  fasilitas pelayanan kesehatan, sektor migas, manufaktur, konstruksi, hingga perkantoran — sesuai
-                  peraturan perundang-undangan ketenagakerjaan dan kesehatan Republik Indonesia.
+                  PAKKI berfungsi sebagai pemersatu, pembina, serta pengembang keilmuan dan keterampilan ahli
+                  kesehatan kerja melalui pendidikan, pelatihan, kegiatan ilmiah, kegiatan sosial, dan penguatan
+                  kelembagaan. Organisasi ini berkedudukan di ibu kota negara dengan Dewan Pengurus Daerah di tingkat
+                  provinsi dan Dewan Pengurus Cabang di tingkat kabupaten/kota.
                 </p>
               </div>
 
-              <dl className="mt-6 grid gap-4 border border-slate-300 bg-white p-5 sm:grid-cols-2">
+              <dl className="mt-6 grid gap-4 border border-slate-300 bg-white p-5 sm:grid-cols-3">
                 <div>
                   <dt className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-slate-500">
-                    <ShieldCheck className="h-4 w-4 text-brand-700" /> Badan Hukum
+                    <Calendar className="h-4 w-4 text-brand-700" /> Didirikan
                   </dt>
-                  <dd className="mt-1 font-semibold text-slate-900">
-                    {legal.skNumber ? `SK Kemenkumham ${legal.skNumber}` : "Terdaftar di Kemenkumham RI"}
-                  </dd>
+                  <dd className="mt-1 font-semibold text-slate-900">{organization.founded}</dd>
+                </div>
+                <div>
+                  <dt className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-slate-500">
+                    <ShieldCheck className="h-4 w-4 text-brand-700" /> Landasan
+                  </dt>
+                  <dd className="mt-1 font-semibold text-slate-900">{organization.legalBasis}</dd>
                 </div>
                 <div>
                   <dt className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-slate-500">
                     <Building2 className="h-4 w-4 text-brand-700" /> Sekretariat
                   </dt>
-                  <dd className="mt-1 font-semibold text-slate-900">Fakultas Kesehatan Masyarakat UI</dd>
+                  <dd className="mt-1 font-semibold text-slate-900">FKM Universitas Indonesia, Depok</dd>
                 </div>
               </dl>
+
+              {/* Makna lambang */}
+              <div className="mt-6 border border-slate-300 bg-white p-5 sm:p-6">
+                <div className="flex items-center gap-4">
+                  <div className="relative h-16 w-16 shrink-0">
+                    <Image src="/logo-pakki.png" alt="Lambang PAKKI" fill sizes="64px" className="object-contain" />
+                  </div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-brand-700">Makna Lambang</h3>
+                </div>
+                <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+                  {emblemMeaning.map((item) => (
+                    <div key={item.part}>
+                      <dt className="font-bold text-slate-900">{item.part}</dt>
+                      <dd className="mt-0.5 text-sm leading-relaxed text-slate-600">{item.meaning}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
 
             <div className="space-y-6 border border-slate-300 bg-white p-6 sm:p-8 lg:col-span-5">
               <div>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-brand-700">Visi</h3>
-                <blockquote className="mt-3 border-l-4 border-brand-700 bg-brand-50 py-2 pl-4 pr-2 text-base italic leading-relaxed text-slate-700">
-                  “Mewujudkan perhimpunan profesi kesehatan kerja yang berintegritas, mandiri, dan berstandar
-                  internasional demi tercapainya derajat kesehatan dan produktivitas tenaga kerja Indonesia
-                  setinggi-tingginya.”
-                </blockquote>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-brand-700">Tujuan Organisasi</h3>
+                <ol className="mt-4 space-y-3 text-sm text-slate-700">
+                  {objectives.map((text, i) => (
+                    <li key={text} className="flex items-start gap-3">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center bg-brand-700 text-xs font-bold text-white">
+                        {i + 1}
+                      </span>
+                      <span className="leading-relaxed">{text}</span>
+                    </li>
+                  ))}
+                </ol>
               </div>
               <div className="border-t border-slate-200 pt-6">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-brand-700">Pilar Pengabdian</h3>
-                <ul className="mt-4 space-y-3 text-sm text-slate-700">
-                  {pillars.map(([title, body]) => (
-                    <li key={title} className="flex items-start gap-3">
-                      <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                      <span>
-                        <strong className="text-slate-900">{title}.</strong> {body}
-                      </span>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-brand-700">Nilai yang Dianut</h3>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {values.map((v) => (
+                    <li
+                      key={v}
+                      className="flex items-center gap-1.5 border border-brand-200 bg-brand-50 px-3 py-1.5 text-sm font-semibold text-brand-900"
+                    >
+                      <CircleCheck className="h-4 w-4 text-brand-600" /> {v}
                     </li>
                   ))}
                 </ul>
@@ -494,7 +523,80 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 9. KEANGGOTAAN */}
+        {/* 9. SUSUNAN PENGURUS (sumber: SK No. 011/DPP.PAKKI/SK/K/X/2022) */}
+        <section id="pengurus" className="border-b border-slate-200 bg-white py-12 md:py-16">
+          <div className="mx-auto max-w-7xl px-4 md:px-8">
+            <SectionHeading
+              eyebrow={`Kepengurusan Periode ${leadership.period}`}
+              title="Susunan Dewan Pengurus Pusat, Dewan Pakar, dan Dewan Pembina"
+              description={`Ditetapkan melalui Keputusan DPP PAKKI Nomor ${leadership.skNumber} tanggal ${leadership.skDate}.`}
+            />
+
+            {/* Pengurus harian */}
+            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              {leadership.executives.map((p, i) => (
+                <li
+                  key={p.role}
+                  className={`border p-4 ${
+                    i === 0 ? "border-brand-900 bg-brand-900 text-white sm:col-span-2 lg:col-span-1" : "border-slate-300 bg-white"
+                  }`}
+                >
+                  <p
+                    className={`text-[11px] font-bold uppercase tracking-wider ${
+                      i === 0 ? "text-gold-400" : "text-brand-700"
+                    }`}
+                  >
+                    {p.role}
+                  </p>
+                  <p className={`mt-1 font-bold leading-snug ${i === 0 ? "text-white" : "text-slate-900"}`}>{p.name}</p>
+                </li>
+              ))}
+            </ul>
+
+            {/* Bidang */}
+            <h3 className="mt-10 text-sm font-bold uppercase tracking-wider text-slate-500">Ketua Bidang & Anggota</h3>
+            <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {leadership.divisions.map((d) => (
+                <article key={d.name} className="flex flex-col border border-slate-300 border-t-4 border-t-brand-700">
+                  <div className="border-b border-slate-200 bg-slate-50 px-5 py-3">
+                    <h4 className="font-bold leading-snug text-slate-900">Bidang {d.name}</h4>
+                  </div>
+                  <div className="px-5 py-4 text-sm">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-brand-700">Ketua</p>
+                    <p className="font-semibold text-slate-900">{d.chair}</p>
+                    <p className="mt-3 text-[11px] font-bold uppercase tracking-wider text-slate-500">Anggota</p>
+                    <ul className="mt-1 space-y-1 text-slate-700">
+                      {d.members.map((m) => (
+                        <li key={m}>{m}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* Dewan Pakar & Pembina */}
+            <div className="mt-10 grid gap-4 md:grid-cols-2">
+              {leadership.councils.map((c) => (
+                <article key={c.name} className="border border-slate-300 bg-slate-50 p-5 sm:p-6">
+                  <h3 className="flex items-center gap-2 font-bold uppercase tracking-wider text-brand-800">
+                    <Award className="h-5 w-5" /> {c.name}
+                  </h3>
+                  <p className="mt-4 text-[11px] font-bold uppercase tracking-wider text-brand-700">Ketua</p>
+                  <p className="font-semibold text-slate-900">{c.chair}</p>
+                  <p className="mt-3 text-[11px] font-bold uppercase tracking-wider text-slate-500">Anggota</p>
+                  <ul className="mt-1 space-y-1 text-sm text-slate-700">
+                    {c.members.map((m) => (
+                      <li key={m}>{m}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 10. KEANGGOTAAN (sumber: ART Pasal 14–18, AD Pasal 20) */}
         <section id="keanggotaan" className="relative isolate overflow-hidden bg-brand-950 py-12 text-white md:py-16">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_left,var(--color-brand-800),transparent_60%)]" />
           <div className="mx-auto max-w-7xl px-4 md:px-8">
@@ -502,22 +604,61 @@ export default function Home() {
               <p className="text-xs font-bold uppercase tracking-wider text-brand-300">Layanan Anggota</p>
               <h2 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">Bergabung sebagai Anggota PAKKI</h2>
               <p className="mt-3 text-base leading-relaxed text-brand-100/85">
-                Untuk lulusan K3, dokter okupasi, higienis industri, dan praktisi kesehatan kerja yang ingin
-                mendapatkan nomor registrasi resmi serta hak mengikuti program P2KB.
+                Keanggotaan terbuka bagi individu dengan latar belakang pendidikan atau pekerjaan yang berkaitan
+                dengan kesehatan kerja, lulusan dalam maupun luar negeri.
               </p>
             </div>
 
-            <ol className="mt-8 grid gap-3 sm:grid-cols-2 md:mt-10 lg:grid-cols-4 lg:gap-4">
-              {membershipSteps.map((step, i) => (
-                <li key={step.title} className="border border-white/15 bg-white/5 p-5">
-                  <span className="flex h-8 w-8 items-center justify-center bg-gold-500 text-sm font-black text-brand-950">
-                    {i + 1}
-                  </span>
-                  <h3 className="mt-3 font-bold">{step.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-brand-100/80">{step.body}</p>
+            {/* Jenis keanggotaan */}
+            <ul className="mt-8 grid gap-3 md:grid-cols-3">
+              {membershipTypes.map((t) => (
+                <li key={t.name} className="border border-white/15 bg-white/5 p-5">
+                  <h3 className="flex items-center gap-2 font-bold">
+                    <UserCheck className="h-5 w-5 text-gold-400" /> {t.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-brand-100/80">{t.body}</p>
                 </li>
               ))}
-            </ol>
+            </ul>
+
+            <div className="mt-8 grid gap-6 lg:grid-cols-12">
+              {/* Persyaratan + biaya */}
+              <div className="border border-white/15 bg-brand-900/60 p-5 sm:p-6 lg:col-span-5">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-brand-300">Persyaratan Anggota Biasa</h3>
+                <ul className="mt-4 space-y-2.5 text-sm text-brand-50">
+                  {membershipRequirements.map((r) => (
+                    <li key={r} className="flex items-start gap-2.5">
+                      <CircleCheck className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" /> {r}
+                    </li>
+                  ))}
+                </ul>
+                <dl className="mt-6 grid grid-cols-2 gap-3 border-t border-white/15 pt-5">
+                  {membershipFees.map((f) => (
+                    <div key={f.label}>
+                      <dt className="text-[11px] font-bold uppercase tracking-wider text-brand-300">{f.label}</dt>
+                      <dd className="mt-0.5 text-lg font-black">{f.amount}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <p className="mt-2 text-xs text-brand-100/60">Anggota Kehormatan dibebaskan dari iuran.</p>
+              </div>
+
+              {/* Alur */}
+              <div className="lg:col-span-7">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-brand-300">Tata Cara Penerimaan</h3>
+                <ol className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {membershipSteps.map((step, i) => (
+                    <li key={step.title} className="border border-white/15 bg-white/5 p-5">
+                      <span className="flex h-8 w-8 items-center justify-center bg-gold-500 text-sm font-black text-brand-950">
+                        {i + 1}
+                      </span>
+                      <h4 className="mt-3 font-bold">{step.title}</h4>
+                      <p className="mt-1 text-sm leading-relaxed text-brand-100/80">{step.body}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
@@ -532,7 +673,7 @@ export default function Home() {
                 href={`mailto:${contact.email}?subject=${encodeURIComponent("Pendaftaran Anggota PAKKI")}`}
                 className="inline-flex min-h-11 items-center justify-center gap-2 border border-brand-400/70 px-6 py-3 text-sm font-semibold uppercase tracking-wider transition-colors hover:bg-white/10"
               >
-                <Mail className="h-4 w-4 text-brand-300" /> Kirim Berkas via Email
+                <Mail className="h-4 w-4 text-brand-300" /> Minta Formulir via Email
               </a>
             </div>
           </div>
