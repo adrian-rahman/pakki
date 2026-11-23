@@ -6,36 +6,44 @@ import { navItems } from "@/content/site";
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#beranda");
+  const [active, setActive] = useState(navItems[0].href);
 
-  // Sorot menu sesuai section yang sedang terlihat
+  // Sorot menu sesuai section yang sedang dibaca.
+  // Aturan: section aktif = section terakhir yang bagian atasnya sudah melewati garis 35% tinggi layar.
+  // Pengecualian: di dasar halaman, footer (Kontak) baru aktif bila sudah terlihat cukup besar,
+  // supaya section panjang sebelum footer (Keanggotaan) tidak terlewati.
   useEffect(() => {
     const sections = navItems
       .map((item) => document.querySelector<HTMLElement>(item.href))
       .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) setActive(`#${visible[0].target.id}`);
-      },
-      { rootMargin: "-30% 0px -60% 0px" },
-    );
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const line = window.innerHeight * 0.35;
+      let current = sections[0];
+      for (const s of sections) {
+        if (s.getBoundingClientRect().top <= line) current = s;
+      }
 
-    sections.forEach((s) => observer.observe(s));
-
-    // Footer (Kontak) pendek dan tak pernah mencapai tengah layar: sorot saat sudah di dasar halaman
-    const onScroll = () => {
+      const last = sections[sections.length - 1];
       const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-      if (atBottom) setActive(navItems[navItems.length - 1].href);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
+      if (atBottom && last.getBoundingClientRect().top <= window.innerHeight * 0.6) current = last;
 
+      setActive(`#${current.id}`);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
-      observer.disconnect();
+      cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 

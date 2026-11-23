@@ -84,4 +84,4 @@ pakki-website/
 1. **Membership Registration Flow (`/keanggotaan/daftar`)**: Form with validation for member categories (Biasa, Khusus, Kehormatan — per ART Pasal 14–18), ijazah & sertifikat kompetensi upload requirements, and WhatsApp/Email routing.
 2. **Full Profile & Board Directory (`/profil`)**: Historical timeline from 2015 (Munas II 2022), AD/ART download (once the client approves publishing it), expanded DPP leadership directory (homepage `#pengurus` section already lists the 2022–2027 board).
 3. **Regulation & Library Hub (`/regulasi`)**: Filterable repository of Kemenaker/Kemenkes occupational health regulations with search & PDF downloads.
-4. **News & Press Release Dynamic Engine (`/warta/[slug]`)**: Dynamic routes for articles and P2KB educational releases.
+4. **News & Press Release Dynamic Engine (`/berita/[slug]`)**: Dynamic routes for articles and P2KB educational releases.

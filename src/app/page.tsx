@@ -129,7 +129,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-xs md:px-8 md:text-sm">
           <p className="flex min-w-0 items-center gap-2">
             <span className="inline-flex shrink-0 items-center gap-1 border border-brand-700 bg-brand-800 px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-wider">
-              <BellRing className="h-3 w-3" /> Warta
+              <BellRing className="h-3 w-3" /> Berita
             </span>
             <span className="truncate">Pemutakhiran data anggota & verifikasi SKP periode 2026/2027</span>
           </p>
@@ -225,10 +225,10 @@ export default function Home() {
                     <BookOpen className="h-4 w-4" /> Divisi Regulasi & Advokasi
                   </span>
                   <a
-                    href="#warta"
+                    href="#berita"
                     className="group inline-flex items-center gap-1 font-bold text-brand-700 hover:text-brand-900"
                   >
-                    Warta lainnya
+                    Berita lainnya
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </a>
                 </div>
@@ -295,11 +295,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. WARTA */}
-        <section id="warta" className="border-b border-slate-200 bg-white py-12 md:py-14">
+        {/* 5. BERITA */}
+        <section id="berita" className="border-b border-slate-200 bg-white py-12 md:py-14">
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <SectionHeading
-              eyebrow="Warta & Kebijakan"
+              eyebrow="Berita & Kebijakan"
               title="Kabar Terbaru dari DPP PAKKI"
               description="Rilis resmi, sikap organisasi, dan perkembangan kebijakan kesehatan kerja nasional."
             />

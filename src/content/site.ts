@@ -17,7 +17,7 @@ export const legal = {
 
 export const navItems = [
   { href: "#beranda", label: "Beranda" },
-  { href: "#warta", label: "Warta" },
+  { href: "#berita", label: "Berita" },
   { href: "#agenda", label: "Agenda & Diklat" },
   { href: "#regulasi", label: "Regulasi" },
   { href: "#profil", label: "Profil" },
@@ -48,12 +48,12 @@ export const announcements = [
     tone: "amber",
     title: "Audiensi DPP PAKKI bersama Kementerian Ketenagakerjaan & Kemenkes RI",
     summary: "Harmonisasi pengawasan keselamatan kerja dan kurikulum uji kompetensi ahli K3 nasional.",
-    meta: "Warta Sekretariat",
-    href: "#warta",
+    meta: "Berita Sekretariat",
+    href: "#berita",
   },
 ] as const;
 
-// CONTOH KONTEN: warta & agenda di bawah hanya ilustrasi tata letak, ganti dengan data asli.
+// CONTOH KONTEN: berita & agenda di bawah hanya ilustrasi tata letak, ganti dengan data asli.
 export const news = [
   {
     category: "Kebijakan",
