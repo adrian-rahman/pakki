@@ -10,6 +10,10 @@ export const contact = {
   hours: "Senin – Jumat, 09.00 – 16.00 WIB",
 };
 
+// Tautan Google Form pendaftaran anggota (rancangan: docs/google-form-pendaftaran.md).
+// Selama null, tombol "Isi Formulir Pendaftaran" disembunyikan.
+export const registrationFormUrl: string | null = null;
+
 export const legal = {
   // PLACEHOLDER: isi nomor SK Kemenkumham, mis. "AHU-0000000.AH.01.07.TAHUN"
   skNumber: null as string | null,
@@ -25,6 +29,21 @@ export const navItems = [
   { href: "#keanggotaan", label: "Keanggotaan" },
   { href: "#kontak", label: "Kontak" },
 ];
+
+// Sorotan utama beranda — kegiatan nyata PAKKI (foto dari pengurus).
+// KONFIRMASI ke pengurus: tanggal persis dan nama kampus penyelenggara.
+export const featured = {
+  category: "Kegiatan Organisasi",
+  source: "PAKKI Provinsi Bali",
+  date: "September 2024",
+  title: "Seminar Nasional dan Pelantikan Pengurus Daerah PAKKI Provinsi Bali Periode 2024–2029",
+  summary:
+    "Pengurus Daerah Perhimpunan Ahli Kesehatan Kerja Indonesia Provinsi Bali periode 2024–2029 resmi dilantik dalam rangkaian Seminar Nasional bertema “Peran Keselamatan dan Kesehatan Kerja (K3) dalam Pembangunan Kesehatan Masyarakat”, bertempat di Universitas Dhyana Pura, Bali.",
+  image: {
+    src: "/images/kegiatan/pelantikan-pengda-bali.jpg",
+    alt: "Foto bersama pengurus dan peserta pada Seminar Nasional dan Pelantikan Pengurus Daerah PAKKI Provinsi Bali periode 2024–2029",
+  },
+};
 
 export const announcements = [
   {
@@ -210,7 +229,7 @@ export const membershipFees = [
 export const membershipSteps = [
   {
     title: "Daftar & isi formulir",
-    body: "Hubungi sekretariat untuk memperoleh formulir pendaftaran anggota. Pendaftaran daring melalui web segera tersedia.",
+    body: "Isi formulir pendaftaran daring dan unggah berkas persyaratan, atau hubungi sekretariat untuk bantuan.",
   },
   {
     title: "Pernyataan kesediaan",

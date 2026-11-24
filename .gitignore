@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Dokumen internal PAKKI (AD/ART, SK) — belum boleh dipublikasikan
+/AD-ART*.pdf
+/No.SK*.pdf
+
+# Bahan presentasi untuk klien (tidak untuk repo publik)
+/presentasi/

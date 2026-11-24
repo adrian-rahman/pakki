@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PAKKI - Perhimpunan Ahli Kesehatan Kerja Indonesia",
   description: "Wadah resmi perhimpunan profesi ahli kesehatan kerja di Indonesia. Menjaga standar kompetensi, keselamatan kerja, dan perlindungan tenaga kerja nasional.",
+  // SEMENTARA: jangan diindeks mesin pencari selama data masih contoh/placeholder.
+  // Hapus baris `robots` ini saat website resmi diluncurkan.
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({

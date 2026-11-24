@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   Award,
   BellRing,
-  BookOpen,
   Building2,
   Calendar,
   CircleCheck,
@@ -23,6 +22,7 @@ import {
   announcements,
   contact,
   emblemMeaning,
+  featured,
   leadership,
   membershipFees,
   membershipRequirements,
@@ -32,6 +32,7 @@ import {
   objectives,
   organization,
   regulations,
+  registrationFormUrl,
   values,
 } from "@/content/site";
 
@@ -184,45 +185,38 @@ export default function Home() {
       <main id="konten" className="flex-1">
         <h1 className="sr-only">PAKKI – Perhimpunan Ahli Kesehatan Kerja Indonesia</h1>
 
-        {/* 3. HERO: Rilis utama + papan pengumuman */}
+        {/* 3. HERO: Kegiatan utama + papan pengumuman */}
         <section aria-label="Sorotan" className="border-b border-slate-200 bg-white py-6 md:py-10">
           <div className="mx-auto grid max-w-7xl items-start gap-6 px-4 md:px-8 lg:grid-cols-12 lg:gap-8">
             <article className="border border-slate-300 bg-white lg:col-span-8">
-              <div className="relative isolate flex min-h-72 flex-col overflow-hidden bg-brand-950 p-5 sm:min-h-80 sm:p-8">
-                {/* Latar dekoratif */}
-                <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,var(--color-brand-700),transparent_65%)]" />
-                <div className="absolute inset-0 -z-10 bg-[radial-gradient(var(--color-brand-400)_1px,transparent_1px)] [background-size:18px_18px] opacity-15" />
-                <div className="absolute -right-12 -top-12 -z-10 h-64 w-64 opacity-[0.08] sm:h-96 sm:w-96">
-                  <Image src="/logo-pakki.png" alt="" fill sizes="384px" className="object-contain brightness-0 invert" />
-                </div>
+              {/* Foto kegiatan */}
+              <figure className="relative aspect-[16/9] w-full overflow-hidden bg-brand-950">
+                <Image
+                  src={featured.image.src}
+                  alt={featured.image.alt}
+                  fill
+                  priority
+                  sizes="(min-width: 1280px) 800px, (min-width: 1024px) 66vw, 100vw"
+                  className="object-cover"
+                />
+              </figure>
 
-                <span className="self-start border border-gold-400 bg-gold-500 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-950">
-                  Rilis Pers & Pernyataan Sikap
-                </span>
-
-                <div className="mt-auto space-y-3 pt-16 text-white">
-                  <p className="flex flex-wrap items-center gap-x-2 text-xs font-semibold uppercase tracking-wider text-brand-200 sm:text-sm">
-                    <span>Dewan Pengurus Pusat PAKKI</span>
-                    <span aria-hidden>•</span>
-                    <time>November 2026</time>
-                  </p>
-                  <h2 className="text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-[2rem]">
-                    Penguatan Standar Higiene Industri dan Surveilans Kesehatan Kerja dalam Menghadapi
-                    Transformasi Industri Nasional
-                  </h2>
-                </div>
-              </div>
-
-              <div className="space-y-5 p-5 sm:p-8">
-                <p className="text-base leading-relaxed text-slate-700">
-                  PAKKI menegaskan komitmennya mengawal implementasi regulasi kesehatan lingkungan kerja terpadu.
-                  Sebagai wadah profesi para ahli dan praktisi kesehatan kerja, PAKKI mendorong standardisasi
-                  kompetensi guna mencegah Penyakit Akibat Kerja (PAK) dan menciptakan tempat kerja yang sehat,
-                  selamat, dan berdaya saing.
+              <div className="space-y-4 border-t-4 border-gold-500 p-5 sm:p-8">
+                <p className="flex flex-wrap items-center gap-x-2 gap-y-2 text-xs font-semibold uppercase tracking-wider text-brand-700 sm:text-sm">
+                  <span className="border border-gold-400 bg-gold-500 px-2.5 py-1 text-[11px] font-bold text-brand-950">
+                    {featured.category}
+                  </span>
+                  <span>{featured.source}</span>
+                  <span aria-hidden>•</span>
+                  <time>{featured.date}</time>
                 </p>
+                <h2 className="text-2xl font-black leading-tight tracking-tight text-slate-900 sm:text-3xl">
+                  {featured.title}
+                </h2>
+                <p className="text-base leading-relaxed text-slate-700">{featured.summary}</p>
                 <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-4 text-sm">
                   <span className="flex items-center gap-1.5 text-slate-500">
-                    <BookOpen className="h-4 w-4" /> Divisi Regulasi & Advokasi
+                    <MapPin className="h-4 w-4" /> Bali
                   </span>
                   <a
                     href="#berita"
@@ -661,6 +655,16 @@ export default function Home() {
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              {registrationFormUrl && (
+                <a
+                  href={registrationFormUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 border border-gold-400 bg-gold-500 px-6 py-3 text-sm font-bold uppercase tracking-wider text-brand-950 transition-colors hover:bg-gold-400"
+                >
+                  <FileText className="h-4 w-4" /> Isi Formulir Pendaftaran
+                </a>
+              )}
               <a
                 href={waLink}
                 target="_blank"
